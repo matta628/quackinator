@@ -1,18 +1,24 @@
 import sys
 import pygame
+from settings import Settings
+from duck import Duck
 
 def run_game():
     pygame.init()
-    screen = pygame.display.set_mode((1200,800))
+    quack_settings = Settings()
+    screen = pygame.display.set_mode((quack_settings.screen_width,
+                                      quack_settings.screen_height))
+    duck = Duck(screen)
     pygame.display.set_caption("Quackinator")
+    
 
-    bg_color = (42, 103, 201)
 
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
-        screen.fill(bg_color)
+        screen.fill(quack_settings.bg_color)
+        duck.blitme()
         pygame.display.flip()
 
 run_game()
